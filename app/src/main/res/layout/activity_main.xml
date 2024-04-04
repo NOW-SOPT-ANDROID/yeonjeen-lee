@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="ID"
-        android:textSize="35dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/ivMainProfile"
         app:layout_constraintTop_toBottomOf="@id/ivMainProfile"/>
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/ps_title"
-        android:textSize="35dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/tvMainId"
         app:layout_constraintTop_toBottomOf="@id/tvMainId"/>
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/nickname"
-        android:textSize="35dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/tvMainPs"
         app:layout_constraintTop_toBottomOf="@id/tvMainPs"/>
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/mbti"
-        android:textSize="35dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/tvMainNickName"
         app:layout_constraintTop_toBottomOf="@id/tvMainNickName"/>
