@@ -94,4 +94,17 @@
         app:layout_constraintTop_toBottomOf="@id/tvSignUpMbtiTitle"
         app:layout_constraintStart_toStartOf="@id/tvSignUpMbtiTitle"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGotoSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입하기"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_solid100_purple"
+        android:layout_marginBottom="50dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
