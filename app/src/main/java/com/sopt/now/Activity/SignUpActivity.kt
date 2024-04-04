@@ -22,7 +22,7 @@ class SignUpActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
 
         setMbtiSpinner()
-        setupSignUpButton()
+        setupSignUp()
     }
 
     private fun setMbtiSpinner() {
@@ -33,7 +33,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.spSignUpMbti.adapter = adapter
     }
 
-    private fun setupSignUpButton() {
+    private fun setupSignUp() {
         binding.btnSignUp.setOnClickListener {
             val id = binding.etSignUpID.text.toString()
             val password = binding.etSignUpPs.text.toString()
@@ -52,13 +52,13 @@ class SignUpActivity : AppCompatActivity() {
     ) {
         if (viewModel.checkSignUpAllowed(id, password, nickname, selectedMbti)) {
             Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
-            moveToLoginScreen(id, password, nickname, selectedMbti)
+            moveToLogin(id, password, nickname, selectedMbti)
         } else {
             Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun moveToLoginScreen(
+    private fun moveToLogin(
         id: String,
         password: String,
         nickname: String,
