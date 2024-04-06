@@ -1,5 +1,7 @@
 package com.sopt.now.compose
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,7 +43,6 @@ class LoginActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NOWSOPTAndroidTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -100,9 +102,11 @@ fun LoginId() {
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = "ID",
+        Text(
+            text = "ID",
             modifier = Modifier.padding(10.dp),
-            fontWeight = FontWeight.Bold,)
+            fontWeight = FontWeight.Bold,
+        )
         LoginIdEdit()
     }
 }
@@ -131,9 +135,11 @@ fun LoginPs() {
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = "비밀번호",
+        Text(
+            text = "비밀번호",
             modifier = Modifier.padding(10.dp),
-            fontWeight = FontWeight.Bold,)
+            fontWeight = FontWeight.Bold,
+        )
         LoginPsEdit()
     }
 }
@@ -172,8 +178,9 @@ fun LoginButton() {
 
 @Composable
 fun GoToSignUp() {
+    val context = LocalContext.current
     Button(
-        onClick = { /* 클릭 시 수행될 동작 */ },
+        onClick = { navigateToSignUp(context) },
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth(),
@@ -184,11 +191,8 @@ fun GoToSignUp() {
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NOWSOPTAndroidTheme {
-        getLogin()
-    }
+private fun navigateToSignUp(context: Context) {
+    val intent = Intent(context, SignUpActivity::class.java)
+    context.startActivity(intent)
 }
+
