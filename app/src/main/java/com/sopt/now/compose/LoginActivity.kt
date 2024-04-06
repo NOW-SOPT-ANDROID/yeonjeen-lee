@@ -122,7 +122,7 @@ fun LoginIdEdit() {
             .fillMaxWidth()
             .padding(10.dp),
         label = { Text("아이디를 입력하세요") },
-        placeholder = { Text("Euijin Kwak") },
+        placeholder = { Text("") },
         leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "User Icon") },
         singleLine = true,
     )

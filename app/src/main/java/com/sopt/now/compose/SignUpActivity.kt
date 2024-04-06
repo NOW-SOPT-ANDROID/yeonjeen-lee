@@ -11,15 +11,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,7 +42,7 @@ class SignUpActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    getSignUp()
+                    SignUpContent()
                 }
             }
         }
@@ -53,18 +50,17 @@ class SignUpActivity : ComponentActivity() {
 }
 
 @Composable
-fun getSignUp() {
+fun SignUpContent() {
     Column(
         modifier = Modifier.padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         SignUpTitle()
-        Spacer(modifier = Modifier.height(0.dp))
-        SignUp()
+        Spacer(modifier = Modifier.height(10.dp))
+        SignUpFields()
         Spacer(modifier = Modifier.height(20.dp))
         SignUpButton()
-        Spacer(modifier = Modifier.height(40.dp))
     }
 }
 
@@ -81,152 +77,37 @@ fun SignUpTitle() {
 }
 
 @Composable
-fun SignUp() {
+fun SignUpFields() {
     Column(
-        modifier = Modifier.padding(5.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier.padding(horizontal = 10.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        SignUpId()
-        SignUpPs()
-        SignUpNickName()
-        SignUpAdress()
+        SignUpField("ID")
+        SignUpField("비밀번호")
+        SignUpField("닉네임")
+        SignUpField("주소")
     }
 }
 
 @Composable
-fun SignUpId() {
+fun SignUpField(label: String) {
+    var text by remember { mutableStateOf("") }
     Column(
-        modifier = Modifier.padding(0.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Text(
-            text = "ID",
-            modifier = Modifier.padding(10.dp),
+            text = label,
+            modifier = Modifier.padding(start = 8.dp),
             fontWeight = FontWeight.Bold,
         )
-        SignUpIdEdit()
-    }
-}
-
-@Composable
-fun SignUpIdEdit() {
-    var text by remember { mutableStateOf("") }
-
-    TextField(
-        value = text,
-        onValueChange = { text = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        label = { Text("아이디를 입력하세요") },
-        placeholder = { Text("Euijin Kwak") },
-        leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "User Icon") },
-        singleLine = true,
-    )
-}
-
-@Composable
-fun SignUpPs() {
-    Column(
-        modifier = Modifier.padding(0.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = "비밀번호",
-            modifier = Modifier.padding(10.dp),
-            fontWeight = FontWeight.Bold,
+        OutlinedTextField(
+            value = text,
+            onValueChange = {text = it},
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("입력하세요") }
         )
-        SignUpPsEdit()
     }
-}
-
-@Composable
-fun SignUpPsEdit() {
-    var text by remember { mutableStateOf("") }
-
-    TextField(
-        value = text,
-        onValueChange = { text = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        label = { Text("비밀번호를 입력하세요") },
-        placeholder = { Text("Euijin Kwak") },
-        leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "User Icon") },
-        singleLine = true,
-    )
-
-}
-
-@Composable
-fun SignUpNickName(){
-    Column(
-        modifier = Modifier.padding(0.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = "닉네임",
-            modifier = Modifier.padding(10.dp),
-            fontWeight = FontWeight.Bold,
-        )
-        SignUpNickNameEdit()
-    }
-}
-
-@Composable
-fun SignUpNickNameEdit(){
-    var text by remember { mutableStateOf("") }
-
-    TextField(
-        value = text,
-        onValueChange = { text = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        label = { Text("닉네임을 입력하세요") },
-        placeholder = { Text("Euijin Kwak") },
-        leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "User Icon") },
-        singleLine = true,
-    )
-
-}
-
-@Composable
-fun SignUpAdress(){
-    Column(
-        modifier = Modifier.padding(0.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = "주소",
-            modifier = Modifier.padding(10.dp),
-            fontWeight = FontWeight.Bold,
-        )
-        SignUpAdressEdit()
-    }
-}
-
-@Composable
-fun SignUpAdressEdit(){
-    var text by remember { mutableStateOf("") }
-
-    TextField(
-        value = text,
-        onValueChange = { text = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        label = { Text("주소를 입력하세요") },
-        placeholder = { Text("Euijin Kwak") },
-        leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "User Icon") },
-        singleLine = true,
-    )
-
 }
 
 @Composable
@@ -234,7 +115,7 @@ fun SignUpButton() {
     Button(
         onClick = { /* 클릭 시 수행될 동작 */ },
         modifier = Modifier
-            .padding(10.dp)
+            .padding(vertical = 10.dp)
             .fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
         shape = RoundedCornerShape(8.dp)
@@ -247,6 +128,6 @@ fun SignUpButton() {
 @Composable
 fun GreetingPreview() {
     NOWSOPTAndroidTheme {
-        getSignUp()
+        SignUpContent()
     }
 }
