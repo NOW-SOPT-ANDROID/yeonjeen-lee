@@ -47,7 +47,7 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    getLogin()
+                    LoginContent()
                 }
             }
         }
@@ -55,7 +55,7 @@ class LoginActivity : ComponentActivity() {
 }
 
 @Composable
-fun getLogin() {
+fun LoginContent() {
     Column(
         modifier = Modifier.padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -194,5 +194,13 @@ fun GoToSignUp() {
 private fun navigateToSignUp(context: Context) {
     val intent = Intent(context, SignUpActivity::class.java)
     context.startActivity(intent)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LoginContentPreview() {
+    NOWSOPTAndroidTheme {
+        LoginContent()
+    }
 }
 
