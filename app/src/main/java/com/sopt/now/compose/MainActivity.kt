@@ -60,7 +60,7 @@ fun MainProfileScreen(
     Row(
         modifier = Modifier.padding(16.dp)
     ) {
-        // 이미지를 담는 Box
+
         Box(
             modifier = Modifier
                 .size(200.dp)
@@ -73,7 +73,7 @@ fun MainProfileScreen(
                 modifier = Modifier.fillMaxSize()
             )
         }
-        // 이름과 자기 소개를 포함하는 Column
+
         Column(
             modifier = Modifier.padding(start = 16.dp)
         ) {
@@ -91,7 +91,7 @@ fun MainProfileScreen(
             )
         }
     }
-    // 나머지 정보들을 포함하는 Column
+
     Column(
         modifier = Modifier.padding(start = 20.dp)
     ) {
