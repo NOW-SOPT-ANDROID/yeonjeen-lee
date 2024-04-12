@@ -1,4 +1,4 @@
-package com.sopt.now.compose
+package com.sopt.now.compose.Login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

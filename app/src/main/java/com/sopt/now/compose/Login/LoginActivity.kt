@@ -1,4 +1,4 @@
-package com.sopt.now.compose
+package com.sopt.now.compose.Login
 
 import android.content.Context
 import android.content.Intent
@@ -34,6 +34,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sopt.now.compose.MainActivity
+import com.sopt.now.compose.SignUp.SignUpActivity
 import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
 class LoginActivity : ComponentActivity() {
@@ -50,7 +52,7 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LoginContent(viewModel, signUpId, signUpPassword, signUpNickname, signUpAddress)
+                    LoginScreen(viewModel, signUpId, signUpPassword, signUpNickname, signUpAddress)
                 }
             }
         }
@@ -58,7 +60,7 @@ class LoginActivity : ComponentActivity() {
 }
 
 @Composable
-fun LoginContent(
+fun LoginScreen(
     viewModel: LoginViewModel,
     signUpId: String,
     signUpPassword: String,
