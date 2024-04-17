@@ -58,17 +58,17 @@ class LoginActivity : AppCompatActivity() {
 
     private fun moveToMainActivity(savedId: String?, savedPassword: String?) {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtras(createMainActivityExtras(savedId, savedPassword))
+        intent.putExtras(createBundleForUserInfo(savedId, savedPassword))
         startActivity(intent)
         finish()
     }
 
-    private fun createMainActivityExtras(savedId: String?, savedPassword: String?): Bundle {
-        val mainActivityExtras = Bundle()
-        mainActivityExtras.putString("id", savedId)
-        mainActivityExtras.putString("password", savedPassword)
-        mainActivityExtras.putString("nickname", intent.getStringExtra("nickname"))
-        mainActivityExtras.putString("mbti", intent.getStringExtra("mbti"))
-        return mainActivityExtras
+    private fun createBundleForUserInfo(savedId: String?, savedPassword: String?): Bundle {
+        val userInfoBundle = Bundle()
+        userInfoBundle.putString("id", savedId)
+        userInfoBundle.putString("password", savedPassword)
+        userInfoBundle.putString("nickname", intent.getStringExtra("nickname"))
+        userInfoBundle.putString("mbti", intent.getStringExtra("mbti"))
+        return userInfoBundle
     }
 }
