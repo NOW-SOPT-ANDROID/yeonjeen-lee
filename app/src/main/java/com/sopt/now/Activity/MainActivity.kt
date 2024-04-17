@@ -20,9 +20,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setMainProfile(id: String, password: String, nickname: String, mbti: String) {
-        binding.tvMainId.text = id
-        binding.tvMainPs.text = password
-        binding.tvMainNickName.text = nickname
-        binding.tvMainMbti.text = mbti
+        with(binding) {
+            tvMainId.text = id
+            tvMainPs.text = password
+            tvMainNickName.text = nickname
+            tvMainMbti.text = mbti
+        }
     }
 }
