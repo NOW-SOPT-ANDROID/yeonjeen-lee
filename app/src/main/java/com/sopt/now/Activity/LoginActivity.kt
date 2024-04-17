@@ -64,11 +64,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun createMainActivityExtras(savedId: String?, savedPassword: String?): Bundle {
-        val extras = Bundle()
-        extras.putString("id", savedId)
-        extras.putString("password", savedPassword)
-        extras.putString("nickname", intent.getStringExtra("nickname"))
-        extras.putString("mbti", intent.getStringExtra("mbti"))
-        return extras
+        val mainActivityExtras = Bundle()
+        mainActivityExtras.putString("id", savedId)
+        mainActivityExtras.putString("password", savedPassword)
+        mainActivityExtras.putString("nickname", intent.getStringExtra("nickname"))
+        mainActivityExtras.putString("mbti", intent.getStringExtra("mbti"))
+        return mainActivityExtras
     }
 }
