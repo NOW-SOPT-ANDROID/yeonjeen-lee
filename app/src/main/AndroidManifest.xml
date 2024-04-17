@@ -23,11 +23,13 @@
         </activity>
 
         <activity
+            android:name=".Activity.MainActivity"
             android:exported="false"
-            android:name=".Activity.MainActivity"/>
+            />
         <activity
+            android:name=".Activity.SignUpActivity"
             android:exported="false"
-            android:name=".Activity.SignUpActivity"/>
+            />
     </application>
 
 </manifest>
