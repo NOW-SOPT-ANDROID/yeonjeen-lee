@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
         val savedPassword = intent.getStringExtra("password")
 
         goToSignUp()
-        setupLogin(savedId, savedPassword)
+        initializeLoginButton(savedId, savedPassword)
     }
 
     private fun goToSignUp() {
@@ -33,17 +33,26 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupLogin(savedId: String?, savedPassword: String?) {
+    private fun initializeLoginButton(savedId: String?, savedPassword: String?) {
         binding.btnLogin.setOnClickListener {
             val inputId = binding.etLoginID.text.toString()
             val inputPassword = binding.etLoginPs.text.toString()
 
-            if (viewModel.checkLoginCredentials(inputId, inputPassword, savedId, savedPassword)) {
-                Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                moveToMainActivity(savedId, savedPassword)
-            } else {
-                Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
-            }
+            validateAndPerformLogin(inputId, inputPassword, savedId, savedPassword)
+        }
+    }
+
+    private fun validateAndPerformLogin(
+        inputId: String,
+        inputPassword: String,
+        savedId: String?,
+        savedPassword: String?
+    ) {
+        if (viewModel.checkLoginCredentials(inputId, inputPassword, savedId, savedPassword)) {
+            Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+            moveToMainActivity(savedId, savedPassword)
+        } else {
+            Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
