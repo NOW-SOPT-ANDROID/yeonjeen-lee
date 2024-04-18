@@ -36,7 +36,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun setupSignUp() {
         binding.btnSignUp.setOnClickListener {
             val id = binding.etSignUpID.text.toString()
-            val password = binding.etSignUpPs.text.toString()
+            val password = binding.etSignUpPassword.text.toString()
             val nickname = binding.etSignUpNickName.text.toString()
             val selectedMbti = binding.spSignUpMbti.selectedItem.toString()
 

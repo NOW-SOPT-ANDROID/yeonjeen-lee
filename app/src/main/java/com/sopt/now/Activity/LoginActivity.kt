@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     private fun initializeLoginButton(savedId: String?, savedPassword: String?) {
         binding.btnLogin.setOnClickListener {
             val inputId = binding.etLoginID.text.toString()
-            val inputPassword = binding.etLoginPs.text.toString()
+            val inputPassword = binding.etLoginPassword.text.toString()
 
             validateAndPerformLogin(inputId, inputPassword, savedId, savedPassword)
         }
