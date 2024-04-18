@@ -19,6 +19,7 @@ sealed class UserInfoData {
         val giftButton: Boolean,
         val type: String,
     )   : UserInfoData()
+
     data class FriendInfo(
         @DrawableRes val profileImage: Int,
         val name: String,
