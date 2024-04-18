@@ -5,15 +5,127 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivMainProfile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_yeonjeen"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/bg_conersize40"/>
+
+    <TextView
+        android:id="@+id/tvMainName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/myname"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivMainProfile"
+        app:layout_constraintTop_toTopOf="@id/ivMainProfile"/>
+
+    <TextView
+        android:id="@+id/tvMainSelfcription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/selfcription"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/tvMainName"
+        app:layout_constraintTop_toBottomOf="@id/tvMainName"/>
+
+    <TextView
+        android:id="@+id/tvMainIdTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="ID"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/ivMainProfile"
+        app:layout_constraintTop_toBottomOf="@id/ivMainProfile"/>
+
+    <TextView
+        android:id="@+id/tvMainId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/tvMainIdTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvMainIdTitle"
+        tools:text="a21645"/>
+
+    <TextView
+        android:id="@+id/tvMainPsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/ps_title"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/tvMainId"
+        app:layout_constraintTop_toBottomOf="@id/tvMainId"/>
+
+    <TextView
+        android:id="@+id/tvMainPs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/tvMainPsTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvMainPsTitle"
+        tools:text="a21645"/>
+
+    <TextView
+        android:id="@+id/tvMainNickNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/nickname"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/tvMainPs"
+        app:layout_constraintTop_toBottomOf="@id/tvMainPs"/>
+
+    <TextView
+        android:id="@+id/tvMainNickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/tvMainNickNameTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvMainNickNameTitle"
+        tools:text="a21645"/>
+
+    <TextView
+        android:id="@+id/tvMainMbtiTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/mbti"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/tvMainNickName"
+        app:layout_constraintTop_toBottomOf="@id/tvMainNickName"/>
+
+    <TextView
+        android:id="@+id/tvMainMbti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/tvMainMbtiTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvMainMbtiTitle"
+        tools:text="a21645"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

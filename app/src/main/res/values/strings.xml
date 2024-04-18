@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">NOW SOPT Android</string>
+    <string name="welcome_to_sopt">Welcome to SOPT</string>
+    <string name="login_id_title">ID\n</string>
+    <string name="edit_ID">아이디를 입력하세요.</string>
+    <string name="ps_title">비밀번호</string>
+    <string name="edit_ps">비밀번호를 입력하세요.</string>
+    <string name="do_login">로그인하기</string>
+    <string name="id">ID</string>
+    <string name="mbti">MBTI</string>
+    <string name="nickname">닉네임</string>
+    <string name="selfcription">잠은 죽어서 자자</string>
+    <string name="myname">이연진</string>
+    <string name="signup">회원가입하기</string>
+    <string name="edit_nickname">닉네임을 입력하세요</string>
+    <string name="sign_up_English">SIGN UP</string>
 </resources>
