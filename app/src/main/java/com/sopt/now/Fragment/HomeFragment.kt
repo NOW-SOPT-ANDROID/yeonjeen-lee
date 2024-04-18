@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.sopt.now.ViewModel.HomeViewModel
+import com.sopt.now.adapter.UserInfoAdapter
 import com.sopt.now.databinding.FragmentHomeBinding
+import androidx.fragment.app.activityViewModels
 
 class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null // nullable 하게 선언
+    private var _binding: FragmentHomeBinding? = null
+    private val viewModel: HomeViewModel by activityViewModels()
     private val binding
         get() = requireNotNull(_binding) {
             "바인딩 객체 좀 생성해주세요"
         }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,9 +29,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
+        val userList = viewModel.getMockUserList()
+        val userInfoAdapter = UserInfoAdapter(userList)
+        binding.rvHomeUser.adapter = userInfoAdapter
     }
 
     override fun onDestroy() {
