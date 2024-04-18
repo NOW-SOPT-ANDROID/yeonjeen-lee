@@ -65,10 +65,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun createBundleForUserInfo(savedId: String?, savedPassword: String?): Bundle {
         val userInfoBundle = Bundle()
-        userInfoBundle.putString("id", savedId)
-        userInfoBundle.putString("password", savedPassword)
-        userInfoBundle.putString("nickname", intent.getStringExtra("nickname"))
-        userInfoBundle.putString("mbti", intent.getStringExtra("mbti"))
+        with(userInfoBundle) {
+            putString("id", savedId)
+            putString("password", savedPassword)
+            putString("nickname", intent.getStringExtra("nickname"))
+            putString("mbti", intent.getStringExtra("mbti"))
+        }
         return userInfoBundle
     }
 }
