@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.sopt.now.databinding.FragmentMypageBinding
 
 class MyPageFragment : Fragment() {
-    private var _binding: FragmentMypageBinding? = null // nullable 하게 선언
+    private var _binding: FragmentMypageBinding? = null
     private val binding
         get() = requireNotNull(_binding) {
             "바인딩 객체 좀 생성해주세요"
@@ -27,7 +27,12 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val id = arguments?.getString("id") ?: ""
+        val password = arguments?.getString("password") ?: ""
+        val nickname = arguments?.getString("nickname") ?: ""
+        val mbti = arguments?.getString("mbti") ?: ""
 
+        setMainProfile(id, password, nickname, mbti)
 
     }
 

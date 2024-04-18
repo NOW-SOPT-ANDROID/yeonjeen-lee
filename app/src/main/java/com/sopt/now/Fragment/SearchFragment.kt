@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.sopt.now.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
-    private var _binding: FragmentSearchBinding? = null // nullable 하게 선언
+    private var _binding: FragmentSearchBinding? = null
     private val binding
         get() = requireNotNull(_binding) {
             "바인딩 객체 좀 생성해주세요"
@@ -26,7 +26,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // init 로직을 여기에
+
     }
 
     override fun onDestroy() {
