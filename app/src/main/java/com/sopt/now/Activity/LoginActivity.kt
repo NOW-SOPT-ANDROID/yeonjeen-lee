@@ -22,11 +22,11 @@ class LoginActivity : AppCompatActivity() {
         val savedId = intent.getStringExtra("id")
         val savedPassword = intent.getStringExtra("password")
 
-        goToSignUp()
+        moveToSignUp()
         initializeLoginButton(savedId, savedPassword)
     }
 
-    private fun goToSignUp() {
+    private fun moveToSignUp() {
         binding.btnGotoSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
