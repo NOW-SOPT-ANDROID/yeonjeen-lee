@@ -20,27 +20,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        extractIntentData()
+        setupBottomNavigation()
+        addFragment(HomeFragment())
+    }
+
+    private fun extractIntentData() {
         id = intent.getStringExtra("id") ?: ""
         password = intent.getStringExtra("password") ?: ""
         nickname = intent.getStringExtra("nickname") ?: ""
         mbti = intent.getStringExtra("mbti") ?: ""
-
-
-        clickBottomNavigation()
-        addHomeFragment()
     }
 
-    private fun addHomeFragment() {
-        val currentFragment = supportFragmentManager.findFragmentById(binding.fcvHome.id)
-
-        if (currentFragment == null) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.add(binding.fcvHome.id, HomeFragment())
-            transaction.commit()
-        }
-    }
-
-    private fun clickBottomNavigation() {
+    private fun setupBottomNavigation() {
         binding.bnvHome.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_home -> replaceFragment(HomeFragment())
@@ -51,24 +43,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun addFragment(fragment: Fragment) {
+        if (supportFragmentManager.findFragmentById(binding.fcvHome.id) == null) {
+            supportFragmentManager.beginTransaction()
+                .add(binding.fcvHome.id, fragment)
+                .commit()
+        }
+    }
+
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(binding.fcvHome.id, fragment)
+            .addToBackStack(null)
             .commit()
     }
 
     private fun navigateToMyPage() {
-        val myPageBundle = Bundle().apply {
-            putString("id", id)
-            putString("password", password)
-            putString("nickname", nickname)
-            putString("mbti", mbti)
-        }
+        val myPageBundle = createMyPageBundle()
         val myPageFragment = MyPageFragment().apply {
             arguments = myPageBundle
         }
         replaceFragment(myPageFragment)
     }
 
-
+    private fun createMyPageBundle(): Bundle {
+        return Bundle().apply {
+            putString("id", id)
+            putString("password", password)
+            putString("nickname", nickname)
+            putString("mbti", mbti)
+        }
+    }
 }
