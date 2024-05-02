@@ -68,7 +68,6 @@ class UserInfoAdapter(private var items: List<UserInfoData>) :
             is UserInfoData.MyInfo -> VIEW_TYPE_MY
             is UserInfoData.BrithDayFriendInfo -> VIEW_TYPE_BIRTHDAY
             is UserInfoData.FriendInfo -> VIEW_TYPE_FRIEND
-            else -> throw IllegalArgumentException("Invalid view type")
         }
     }
 
