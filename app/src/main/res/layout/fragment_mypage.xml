@@ -107,24 +107,24 @@
         tools:text="a21645"/>
 
     <TextView
-        android:id="@+id/tvMyMbtiTitle"
+        android:id="@+id/tvMyPhoneNumberTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/mbti"
+        android:text="@string/phone"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/tvMyNickName"
         app:layout_constraintTop_toBottomOf="@id/tvMyNickName"/>
 
     <TextView
-        android:id="@+id/tvMyMbti"
+        android:id="@+id/tvMyPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@id/tvMyMbtiTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvMyMbtiTitle"
+        app:layout_constraintStart_toStartOf="@id/tvMyPhoneNumberTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvMyPhoneNumberTitle"
         tools:text="a21645"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var id: String? = null
     private var password: String? = null
     private var nickname: String? = null
-    private var mbti: String? = null
+    private var phonenumber: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             id = getStringExtra("id") ?: ""
             password = getStringExtra("password") ?: ""
             nickname = getStringExtra("nickname") ?: ""
-            mbti = getStringExtra("mbti") ?: ""
+            phonenumber = getStringExtra("phoneNumber") ?: ""
         }
     }
 
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             putString("id", id)
             putString("password", password)
             putString("nickname", nickname)
-            putString("mbti", mbti)
+            putString("phoneNumber", phonenumber)
         }
     }
 }

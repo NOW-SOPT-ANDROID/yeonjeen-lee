@@ -30,23 +30,23 @@ class MyPageFragment : Fragment() {
         val id = arguments?.getString("id") ?: ""
         val password = arguments?.getString("password") ?: ""
         val nickname = arguments?.getString("nickname") ?: ""
-        val mbti = arguments?.getString("mbti") ?: ""
+        val phoneNumber = arguments?.getString("phonenumber") ?: ""
 
-        setMainProfile(id, password, nickname, mbti)
+        setMainProfile(id, password, nickname, phoneNumber)
 
     }
 
-    private fun setMainProfile(id: String, password: String, nickname: String, mbti: String) {
+    private fun setMainProfile(id: String, password: String, nickname: String, phoneNumber: String) {
         with(binding) {
             tvMyId.text = id
             tvMyPassword.text = password
             tvMyNickName.text = nickname
-            tvMyMbti.text = mbti
+            tvMyPhoneNumber.text = phoneNumber
         }
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         _binding = null
+        super.onDestroy()
     }
 }

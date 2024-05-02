@@ -1,91 +1,51 @@
 package com.sopt.now.ViewModel
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sopt.now.R
-import com.sopt.now.data.UserInfoData
+import com.sopt.now.data.FriendInfoData
+import com.sopt.now.data.FriendResponseDto
+import com.sopt.now.data.ServicePool
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
-    private val mockUserList = mutableListOf<UserInfoData>()
+    private val _friendListLiveData = MutableLiveData<List<FriendInfoData>>()
+    val friendListLiveData: LiveData<List<FriendInfoData>> = _friendListLiveData
 
-    init {
-        initializeMockUserList()
-    }
+    fun getUsers() {
+        ServicePool.reqresService.getUsers(page = 2).enqueue(
+            object : Callback< FriendResponseDto> {
+                override fun onResponse(
+                    call: Call<FriendResponseDto>,
+                    response: Response<FriendResponseDto>
+                ) {
+                    if (response.isSuccessful) {
+                        val friendResponse = response.body()
 
-    fun getMockUserList(): List<UserInfoData> {
-        return mockUserList.toList()
-    }
-
-    private fun initializeMockUserList() {
-        mockUserList.apply {
-            add(
-                UserInfoData.MyInfo(
-                    profileImage = R.drawable.img_yeonjeen,
-                    name = "이연진",
-                    selfDescription = "짱짱개발자가 될거야",
-                    type = "MyProfileViewHolder",
-                ),
-            )
-            add(
-                UserInfoData.BrithDayFriendInfo(
-                    profileImage = R.drawable.img_junseo,
-                    name = "최준서",
-                    selfDescription = "아주 야무지게~",
-                    birthdayMark = true,
-                    giftButton = true,
-                    type = "BirthDayFriendViewHolder",
-                ),
-            )
-            add(
-                UserInfoData.FriendInfo(
-                    profileImage = R.drawable.img_arin,
-                    name = "김아린",
-                    selfDescription = "컴포즈가 제일 쉬웠어요",
-                    type = "FriendViewHolder",
-                ),
-            )
-            add(
-                UserInfoData.FriendInfo(
-                    profileImage = R.drawable.img_minjae,
-                    name = "손민재",
-                    selfDescription = "안드 재능러",
-                    type = "FriendViewHolder",
-                ),
-            )
-            add(
-                UserInfoData.FriendInfo(
-                    profileImage = R.drawable.img_euijin,
-                    name = "곽의진",
-                    selfDescription = "꽃보다 곽의진",
-                    type = "FriendViewHolder",
-                ),
-            )
-            add(
-                UserInfoData.FriendInfo(
-                    profileImage = R.drawable.img_arin2,
-                    name = "김아린",
-                    selfDescription = "핑퐁스터디 최고",
-                    type = "FriendViewHolder",
-                ),
-            )
-            add(
-                UserInfoData.FriendInfo(
-                    profileImage = R.drawable.img_minjae2,
-                    name = "손민재",
-                    selfDescription = "안드? 뭐 쉽던데?",
-                    type = "FriendViewHolder",
-                ),
-            )
-            add(
-                UserInfoData.FriendInfo(
-                    profileImage = R.drawable.img_euijin2,
-                    name = "곽의진",
-                    selfDescription = "나는야 안팟장",
-                    type = "FriendViewHolder",
-                ),
-            )
-
-
-        }
+                        friendResponse?.let { friendResponse ->
+                            val friendList = friendResponse.data.map {
+                                FriendInfoData(
+                                    profileImage = it.avatar,
+                                    name = "${it.first_name} ${it.last_name}",
+                                    type = "",
+                                    eMail = it.email,
+                                    id = it.id
+                                )
+                            }
+                            _friendListLiveData.value = friendList
+                        }
+                    } else {
+                        Log.e("FriendViewModel", response.errorBody().toString())
+                    }
+                }
+                override fun onFailure(call: Call<FriendResponseDto>, t: Throwable) {
+                    t.printStackTrace()
+                }
+            }
+        )
     }
 }
 

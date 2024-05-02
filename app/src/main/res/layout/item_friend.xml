@@ -30,7 +30,7 @@
         tool:text="이연진"/>
 
     <TextView
-        android:id="@+id/tvHomeFriendDescription"
+        android:id="@+id/tvHomeFriendEMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"

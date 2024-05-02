@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
             putString("id", savedId)
             putString("password", savedPassword)
             putString("nickname", intent.getStringExtra("nickname"))
-            putString("mbti", intent.getStringExtra("mbti"))
+            putString("phonenumber", intent.getStringExtra("phonenumber"))
         }
         return userInfoBundle
     }
