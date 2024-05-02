@@ -6,12 +6,14 @@
     <string name="password">비밀번호</string>
     <string name="edit_password">비밀번호를 입력하세요.</string>
     <string name="do_login">로그인하기</string>
-    <string name="mbti">MBTI</string>
+    <string name="phone">전화번호</string>
     <string name="nickname">닉네임</string>
     <string name="description">잠은 죽어서 자자</string>
     <string name="my_name">이연진</string>
     <string name="do_sign_up">회원가입하기</string>
     <string name="edit_nickname">닉네임을 입력하세요</string>
+    <string name="edit_phone">전화번호를 입력하세요</string>
+    <string name="mbti">MBTI</string>
     <string name="sign_up">SIGN UP</string>
     <string name="my_page">마이페이지</string>
     <string name="search">검색</string>

@@ -74,25 +74,31 @@
         android:layout_height="wrap_content"
         android:hint="@string/edit_nickname"
         android:layout_marginHorizontal="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSignUpNickNameTitle"/>
 
     <TextView
-        android:id="@+id/tvSignUpMbtiTitle"
+        android:id="@+id/tvSignUpPhoneTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mbti"
+        android:text="@string/phone"
         android:textSize="25dp"
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@id/etSignUpNickName"
         app:layout_constraintStart_toStartOf="@id/etSignUpNickName"/>
-    <Spinner
-        android:id="@+id/spSignUpMbti"
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/etSignUpPhone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvSignUpMbtiTitle"
-        app:layout_constraintStart_toStartOf="@id/tvSignUpMbtiTitle"/>
+        android:hint="@string/edit_phone"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSignUpPhoneTitle" />
+<!--    <Spinner-->
+<!--        android:id="@+id/spSignUpMbti"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvSignUpPhoneTitle"-->
+<!--        app:layout_constraintStart_toStartOf="@id/tvSignUpPhoneTitle"/>-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"
