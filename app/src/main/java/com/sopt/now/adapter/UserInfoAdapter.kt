@@ -10,9 +10,9 @@ import com.sopt.now.data.UserInfoData
 class UserInfoAdapter(private var items: List<UserInfoData>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val VIEW_TYPE_ITEM1 = 1
-    private val VIEW_TYPE_ITEM2 = 2
-    private val VIEW_TYPE_ITEM3 = 3
+    private val VIEW_TYPE_MY = 1
+    private val VIEW_TYPE_BIRTHDAY = 2
+    private val VIEW_TYPE_FRIEND = 3
     fun setUsersList(userList: List<UserInfoData>) {
         items = userList
         notifyDataSetChanged()
@@ -20,17 +20,17 @@ class UserInfoAdapter(private var items: List<UserInfoData>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            VIEW_TYPE_ITEM1 -> {
+            VIEW_TYPE_MY -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_myprofile, parent, false)
                 MyProfileViewHolder(view)
             }
-            VIEW_TYPE_ITEM2 -> {
+            VIEW_TYPE_BIRTHDAY -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_birthday_friend, parent, false)
                 BirthDayFriendViewHolder(view)
             }
-            VIEW_TYPE_ITEM3 -> {
+            VIEW_TYPE_FRIEND -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_friend, parent, false)
                 FriendViewHolder(view)
@@ -65,9 +65,9 @@ class UserInfoAdapter(private var items: List<UserInfoData>) :
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
-            is UserInfoData.MyInfo -> VIEW_TYPE_ITEM1
-            is UserInfoData.BrithDayFriendInfo -> VIEW_TYPE_ITEM2
-            is UserInfoData.FriendInfo -> VIEW_TYPE_ITEM3
+            is UserInfoData.MyInfo -> VIEW_TYPE_MY
+            is UserInfoData.BrithDayFriendInfo -> VIEW_TYPE_BIRTHDAY
+            is UserInfoData.FriendInfo -> VIEW_TYPE_FRIEND
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
