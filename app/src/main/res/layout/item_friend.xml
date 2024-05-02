@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivHomeFriend"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1"
+        app:shapeAppearance="@style/bg_conersize40"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tool:src="@drawable/img_yeonjeen"/>
+
+    <TextView
+        android:id="@+id/tvHomeFriendName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/ivHomeFriend"
+        app:layout_constraintStart_toEndOf="@id/ivHomeFriend"
+        tool:text="이연진"/>
+
+    <TextView
+        android:id="@+id/tvHomeFriendDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#7E7777"
+        app:layout_constraintTop_toBottomOf="@id/tvHomeFriendName"
+        app:layout_constraintStart_toStartOf="@id/tvHomeFriendName"
+        app:layout_constraintBottom_toBottomOf="@id/ivHomeFriend"
+        tool:text="나는 이연진. 짱짱 개발자가 될거야."/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
