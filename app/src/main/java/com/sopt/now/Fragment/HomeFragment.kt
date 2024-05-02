@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import com.sopt.now.ViewModel.HomeViewModel
 import com.sopt.now.adapter.UserInfoAdapter
 import com.sopt.now.databinding.FragmentHomeBinding
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private val binding
         get() = requireNotNull(_binding) {
             "바인딩 객체 좀 생성해주세요"
@@ -35,8 +35,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         _binding = null
+        super.onDestroy()
     }
-
 }
