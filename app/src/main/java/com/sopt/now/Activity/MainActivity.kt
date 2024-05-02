@@ -25,13 +25,19 @@ class MainActivity : AppCompatActivity() {
         nickname = intent.getStringExtra("nickname") ?: ""
         mbti = intent.getStringExtra("mbti") ?: ""
 
-        val currentFragment = supportFragmentManager.findFragmentById(binding.fcvHome.id)
-        if (currentFragment == null) {
-            supportFragmentManager.beginTransaction()
-                .add(binding.fcvHome.id, HomeFragment())
-                .commit()
-        }
+
         clickBottomNavigation()
+        addHomeFragment()
+    }
+
+    private fun addHomeFragment() {
+        val currentFragment = supportFragmentManager.findFragmentById(binding.fcvHome.id)
+
+        if (currentFragment == null) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.add(binding.fcvHome.id, HomeFragment())
+            transaction.commit()
+        }
     }
 
     private fun clickBottomNavigation() {
