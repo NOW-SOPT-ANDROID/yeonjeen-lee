@@ -26,10 +26,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun extractIntentData() {
-        id = intent.getStringExtra("id") ?: ""
-        password = intent.getStringExtra("password") ?: ""
-        nickname = intent.getStringExtra("nickname") ?: ""
-        mbti = intent.getStringExtra("mbti") ?: ""
+        intent.run {
+            id = getStringExtra("id") ?: ""
+            password = getStringExtra("password") ?: ""
+            nickname = getStringExtra("nickname") ?: ""
+            mbti = getStringExtra("mbti") ?: ""
+        }
     }
 
     private fun setupBottomNavigation() {
