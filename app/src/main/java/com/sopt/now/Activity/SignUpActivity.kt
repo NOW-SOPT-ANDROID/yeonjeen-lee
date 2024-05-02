@@ -29,14 +29,6 @@ class SignUpActivity : AppCompatActivity() {
         initViews()
     }
 
-//    private fun setMbtiSpinner() {
-//        val mbtiTypes = resources.getStringArray(R.array.mbti_type)
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mbtiTypes)
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        binding.spSignUpMbti.adapter = adapter
-//    }
-
     private fun initViews() {
         binding.btnSignUp.setOnClickListener {
             signUp()
@@ -70,6 +62,7 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SignUpResponseDto>, t: Throwable) {
+                Log.e("SignUp", "서버 에러 발생", t)
                 Toast.makeText(this@SignUpActivity, "서버 에러 발생 ", Toast.LENGTH_SHORT).show()
             }
         })
