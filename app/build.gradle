@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.20'
 }
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'com.sopt.now.compose'
@@ -13,6 +17,9 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "AUTH_BASE_URL", properties["auth.base.url"]
+        buildConfigField "String", "REQRES_BASE_URL", properties["reqres.base.url"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -35,6 +42,7 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.5.1'
@@ -64,4 +72,14 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    // define a BOM and its version
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0'
 }
