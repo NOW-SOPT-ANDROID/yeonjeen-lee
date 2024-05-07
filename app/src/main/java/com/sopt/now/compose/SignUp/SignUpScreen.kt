@@ -2,6 +2,7 @@ package com.sopt.now.compose.SignUp
 
 import android.content.Context
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -45,6 +46,7 @@ fun SignUpScreen(viewModel: SignUpViewModel) {
     val context = LocalContext.current
 
     val onSignUpSuccess: () -> Unit = {
+        Toast.makeText(context, "회원가입 성공! ${signUpState.message}", Toast.LENGTH_SHORT).show()
         moveToLogin(context)
     }
 
@@ -56,9 +58,9 @@ fun SignUpScreen(viewModel: SignUpViewModel) {
     )
 
     Column(
-        modifier = Modifier.padding(10.dp),
+        modifier = Modifier.padding(5.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
         SignUpTitle()
         Spacer(modifier = Modifier.height(10.dp))
@@ -70,15 +72,14 @@ fun SignUpScreen(viewModel: SignUpViewModel) {
             signUpState = signUpState,
             onSignUpSuccess = onSignUpSuccess
         )
-        val messageColor = if (signUpState.isSuccess) Color.Green else Color.Red
-        Text(
-            text = signUpState.message,
-            color = messageColor,
-            modifier = Modifier.padding(top = 16.dp)
-        )
+        if (!signUpState.isSuccess) {
+            Text(
+                text = signUpState.message,
+                modifier = Modifier.padding(top = 16.dp)
+            )
+        }
     }
 }
-
 
 @Composable
 fun SignUpTitle() {
