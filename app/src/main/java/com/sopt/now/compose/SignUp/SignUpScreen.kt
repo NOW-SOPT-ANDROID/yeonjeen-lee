@@ -45,9 +45,11 @@ fun SignUpScreen(viewModel: SignUpViewModel) {
 
     val context = LocalContext.current
 
-    val onSignUpSuccess: () -> Unit = {
-        Toast.makeText(context, "회원가입 성공! ${signUpState.message}", Toast.LENGTH_SHORT).show()
-        moveToLogin(context)
+    LaunchedEffect(signUpState.isSuccess) {
+        if (signUpState.isSuccess) {
+            Toast.makeText(context, "회원가입 성공! ${signUpState.message}", Toast.LENGTH_SHORT).show()
+            moveToLogin(context)
+        }
     }
 
     val requestDto = SignUpRequestDto(
@@ -70,7 +72,7 @@ fun SignUpScreen(viewModel: SignUpViewModel) {
             viewModel = viewModel,
             requestDto = requestDto,
             signUpState = signUpState,
-            onSignUpSuccess = onSignUpSuccess
+            onSignUpSuccess = {},
         )
         if (!signUpState.isSuccess) {
             Text(
