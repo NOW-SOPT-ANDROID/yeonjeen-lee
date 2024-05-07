@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.sopt.now.compose.Data.ServicePool
 import com.sopt.now.compose.Data.Request.SignUpRequestDto
 import com.sopt.now.compose.Data.Response.SignUpResponseDto
+import com.sopt.now.compose.Data.SignUpResult
+import com.sopt.now.compose.Repository.SignUpRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -13,8 +15,8 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class SignUpViewModel : ViewModel() {
-    private val authService by lazy { ServicePool.authService }
+class SignUpViewModel(private val repository: SignUpRepository) : ViewModel() {
+
     private val _signUpState = MutableStateFlow(SignUpState())
     val signUpState: StateFlow<SignUpState> = _signUpState
 
@@ -23,7 +25,7 @@ class SignUpViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                val response = signUpAsync(requestDto)
+                val response = repository.signUp(requestDto)
                 handleResponse(response)
             } catch (e: Exception) {
                 _signUpState.value = SignUpState(
@@ -34,29 +36,12 @@ class SignUpViewModel : ViewModel() {
         }
     }
 
-    private suspend fun signUpAsync(requestDto: SignUpRequestDto): Response<SignUpResponseDto> {
-        return suspendCoroutine { continuation ->
-            authService.signUp(requestDto).enqueue(object : retrofit2.Callback<SignUpResponseDto> {
-                override fun onResponse(
-                    call: retrofit2.Call<SignUpResponseDto>,
-                    response: retrofit2.Response<SignUpResponseDto>
-                ) {
-                    continuation.resume(response)
-                }
-
-                override fun onFailure(call: retrofit2.Call<SignUpResponseDto>, t: Throwable) {
-                    continuation.resumeWithException(t)
-                }
-            })
-        }
-    }
-
     private fun handleResponse(response: Response<SignUpResponseDto>) {
         if (response.isSuccessful) {
             val userId = response.headers()["location"]
             _signUpState.value = SignUpState(
                 isSuccess = true,
-                message = "유저 아이디는 $userId 입니다"
+                message = "회원가입 성공! 유저의 ID는 $userId 입니다"
             )
         } else {
             val errorCode = response.code()
