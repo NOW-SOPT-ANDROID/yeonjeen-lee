@@ -1,4 +1,4 @@
-package com.sopt.now.compose.Data.Service
+package com.sopt.now.compose.Data
 
 import com.sopt.now.compose.Data.Request.SignUpRequestDto
 import com.sopt.now.compose.Data.Response.SignUpResponseDto
