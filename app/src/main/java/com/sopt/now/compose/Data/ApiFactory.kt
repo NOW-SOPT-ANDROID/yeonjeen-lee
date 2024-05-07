@@ -2,6 +2,8 @@ package com.sopt.now.compose.Data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.sopt.now.compose.BuildConfig
+import com.sopt.now.compose.Data.Service.AuthService
+import com.sopt.now.compose.Data.Service.FriendAuthService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit

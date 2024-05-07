@@ -12,6 +12,8 @@ import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
 class SignUpActivity : ComponentActivity() {
     private val viewModel: SignUpViewModel by viewModels()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -25,6 +27,7 @@ class SignUpActivity : ComponentActivity() {
             }
         }
     }
+
 }
 
 
