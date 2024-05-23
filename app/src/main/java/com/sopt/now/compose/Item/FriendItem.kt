@@ -18,11 +18,10 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.sopt.now.compose.Data.UserInfoData
-import com.sopt.now.compose.R
+import com.sopt.now.compose.Data.FriendInfoData
 
 @Composable
-fun FriendItem(friendList: UserInfoData.FriendInfo) {
+fun FriendItem(friendList: FriendInfoData) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -43,11 +42,11 @@ fun FriendItem(friendList: UserInfoData.FriendInfo) {
             modifier = Modifier.weight(1f)
         ) {
             Text(
-                text =friendList.name  ,
+                text = friendList.name,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = friendList.selfDescription,
+                text = friendList.eMail,
                 color = Color.Gray
             )
         }
