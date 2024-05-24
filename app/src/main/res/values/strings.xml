@@ -8,6 +8,7 @@
     <string name="login_password_title">비밀번호</string>
     <string name="login_password_edit">비밀번호를 입력하세요.</string>
     <string name="login_login_do">로그인하기</string>
+    <string name="login_sign_up_do">회원가입하기</string>
 
     <!--activity_sign_up.xml-->
     <string name="sign_up_title">SIGN UP</string>
@@ -43,5 +44,10 @@
     <!--Login.kt-->
     <string name="login_success_message">로그인에 성공했습니다.</string>
     <string name="login_failure_message">로그인에 실패했습니다.</string>
+
+    <!--menu.xml-->
+    <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_my_page">My</string>
 
 </resources>

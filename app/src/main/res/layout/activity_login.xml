@@ -75,7 +75,7 @@
         android:id="@+id/btnGotoSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_signup_do"
+        android:text="@string/login_sign_up_do"
         android:textColor="@color/white"
         android:background="@drawable/bg_solid100_purple"
         android:layout_marginBottom="30dp"

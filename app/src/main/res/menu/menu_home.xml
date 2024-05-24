@@ -4,19 +4,19 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home_white"
-        android:title="@string/home" />
+        android:title="@string/menu_home" />
 
     <!-- Search -->
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_search_white"
-        android:title="@string/search" />
+        android:title="@string/menu_search" />
 
 
     <!-- MyPage -->
     <item
         android:id="@+id/menu_my_page"
         android:icon="@drawable/ic_person_white_24"
-        android:title="@string/my_page" />
+        android:title="@string/menu_my_page" />
 
 </menu>
