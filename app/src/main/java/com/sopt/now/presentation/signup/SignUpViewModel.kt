@@ -1,8 +1,10 @@
 package com.sopt.now.presentation.signup
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sopt.now.R
 import com.sopt.now.data.ServicePool
 import com.sopt.now.data.model.request.SignUpRequestDto
 import com.sopt.now.data.model.response.SignUpResponseDto
@@ -10,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel(private val context: Context) : ViewModel() {
     private val authService by lazy { ServicePool.authService }
     val liveData = MutableLiveData<SignUpState>()
 
@@ -25,28 +27,28 @@ class SignUpViewModel : ViewModel() {
                     val userId = response.headers()["location"]
                     liveData.value = SignUpState(
                         isSuccess = true,
-                        message = "회원가입 성공 유저의 ID는 $userId 입니다"
+                        message = context.getString(R.string.signup_success_message, userId)
                     )
                     Log.d("SignUp", "data: $data, userId: $userId")
                 } else {
                     if (!response.isSuccessful) {
                         val errorCode = response.code()
-                        Log.e("SignUp", "HTTP Error Code: $errorCode")
+                        Log.e("SignUp", context.getString(R.string.signup_error_http_code, errorCode))
                     }
                     val error = response.message()
                     liveData.value = SignUpState(
                         isSuccess = false,
-                        message = "로그인이 실패 $error"
+                        message = context.getString(R.string.signup_failure_message, error)
                     )
                     val errorBody = response.errorBody()?.string()
-                    Log.e("SignUp", "Error Body: $errorBody")
+                    Log.e("SignUp", context.getString(R.string.signup_error_body, errorBody))
                 }
             }
 
             override fun onFailure(call: Call<SignUpResponseDto>, t: Throwable) {
                 liveData.value = SignUpState(
                     isSuccess = false,
-                    message = "서버에러"
+                    message = context.getString(R.string.server_error)
                 )
             }
         })

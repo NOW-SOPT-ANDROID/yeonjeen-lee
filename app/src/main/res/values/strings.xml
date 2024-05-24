@@ -33,4 +33,15 @@
     <!--item_birthday_friend.xml-->
     <string name="birthday_friend_give_gift">선물하기</string>
 
+    <!--SignUp.kt-->
+    <string name="signup_success_message">회원가입 성공 유저의 ID는 %1$s 입니다</string>
+    <string name="signup_error_http_code">HTTP Error Code: %1$d</string>
+    <string name="signup_failure_message">로그인이 실패 %1$s</string>
+    <string name="signup_error_body">Error Body: %1$s</string>
+    <string name="server_error">서버에러</string>
+
+    <!--Login.kt-->
+    <string name="login_success_message">로그인에 성공했습니다.</string>
+    <string name="login_failure_message">로그인에 실패했습니다.</string>
+
 </resources>

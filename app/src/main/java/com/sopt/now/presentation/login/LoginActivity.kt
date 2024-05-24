@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.sopt.now.R
 import com.sopt.now.databinding.ActivityLoginBinding
 import com.sopt.now.presentation.MainActivity
 import com.sopt.now.presentation.signup.SignUpActivity
@@ -50,10 +51,10 @@ class LoginActivity : AppCompatActivity() {
         savedPassword: String?
     ) {
         if (viewModel.checkLoginCredentials(inputId, inputPassword, savedId, savedPassword)) {
-            Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.login_success_message), Toast.LENGTH_SHORT).show()
             moveToMainActivity(savedId, savedPassword)
         } else {
-            Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.login_failure_message), Toast.LENGTH_SHORT).show()
         }
     }
 
