@@ -1,26 +1,60 @@
 package com.sopt.now.compose.SignUp
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sopt.now.compose.Data.ServicePool
+import com.sopt.now.compose.Data.Request.SignUpRequestDto
+import com.sopt.now.compose.Data.Response.SignUpResponseDto
+import com.sopt.now.compose.Data.SignUpResult
+import com.sopt.now.compose.Repository.SignUpRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import retrofit2.Response
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
-class SignUpViewModel : ViewModel() {
-    private val _signUpSuccess = MutableLiveData<Boolean>()
-    val signUpSuccess: LiveData<Boolean> = _signUpSuccess
+class SignUpViewModel(private val repository: SignUpRepository) : ViewModel() {
 
-    fun signUp(id: String, password: String, nickname: String, address: String) {
-        val isIdValid = id.length in MIN_ID_LENGTH..MAX_ID_LENGTH
-        val isPasswordValid = password.length in MIN_PASSWORD_LENGTH..MAX_PASSWORD_LENGTH
-        val isNicknameValid = nickname.isNotBlank() && !nickname.contains(" ")
-        val isAddressValid = address.isNotBlank()
+    private val _signUpState = MutableStateFlow(SignUpState())
+    val signUpState: StateFlow<SignUpState> = _signUpState
 
-        _signUpSuccess.postValue(isIdValid && isPasswordValid && isNicknameValid && isAddressValid)
+    fun signUp(authenticationId: String, password: String, nickname: String, phone: String) {
+        val requestDto = SignUpRequestDto(authenticationId, password, nickname, phone)
+
+        viewModelScope.launch {
+            try {
+                val response = repository.signUp(requestDto)
+                handleResponse(response)
+            } catch (e: Exception) {
+                _signUpState.value = SignUpState(
+                    isSuccess = false,
+                    message = "서버 에러: ${e.message}"
+                )
+            }
+        }
     }
 
-    companion object {
-        private const val MIN_ID_LENGTH = 6
-        private const val MAX_ID_LENGTH = 10
-        private const val MIN_PASSWORD_LENGTH = 8
-        private const val MAX_PASSWORD_LENGTH = 12
+    private fun handleResponse(response: Response<SignUpResponseDto>) {
+        if (response.isSuccessful) {
+            val userId = response.headers()["location"]
+            _signUpState.value = SignUpState(
+                isSuccess = true,
+                message = "회원가입 성공! 유저의 ID는 $userId 입니다"
+            )
+        } else {
+            val errorCode = response.code()
+            val errorMessage = response.message()
+            _signUpState.value = SignUpState(
+                isSuccess = false,
+                message = "회원가입 실패: $errorCode, $errorMessage"
+            )
+        }
     }
 }
+
+data class SignUpState(
+    val isSuccess: Boolean = false,
+    val message: String = ""
+)

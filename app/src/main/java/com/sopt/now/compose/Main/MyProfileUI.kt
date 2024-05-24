@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.sopt.now.compose.R
 
 @Composable
-fun MyProfileUi(
+fun MyProfileScreen(
     signUpId: String,
     signUpPassword: String,
     signUpNickname: String,

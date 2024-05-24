@@ -91,7 +91,7 @@ fun MainUi(
         ) {
             when (selectedItem) {
                 0 -> {
-                    HomeUi()
+                    HomeScreen()
                 }
 
                 1 -> {
@@ -99,7 +99,7 @@ fun MainUi(
                 }
 
                 2 -> {
-                    MyProfileUi(signUpId, signUpPassword, signUpNickname, signUpAddress)
+                    MyProfileScreen(signUpId, signUpPassword, signUpNickname, signUpAddress)
                 }
             }
         }

@@ -15,9 +15,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,37 +26,60 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sopt.now.compose.Data.Request.SignUpRequestDto
 import com.sopt.now.compose.Login.LoginActivity
 
 @Composable
 fun SignUpScreen(viewModel: SignUpViewModel) {
-    val signUpSuccess by viewModel.signUpSuccess.observeAsState(false)
-    val context = LocalContext.current
+    val signUpState by viewModel.signUpState.collectAsState()
+
     val id = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val nickname = remember { mutableStateOf("") }
-    val address = remember { mutableStateOf("") }
+    val phoneNumber = remember { mutableStateOf("") }
+
+    val context = LocalContext.current
+
+    LaunchedEffect(signUpState.isSuccess) {
+        if (signUpState.isSuccess) {
+            Toast.makeText(context, "회원가입 성공! ${signUpState.message}", Toast.LENGTH_SHORT).show()
+            moveToLogin(context)
+        }
+    }
+
+    val requestDto = SignUpRequestDto(
+        authenticationId = id.value,
+        password = password.value,
+        nickname = nickname.value,
+        phoneNumber = phoneNumber.value
+    )
+
     Column(
-        modifier = Modifier.padding(10.dp),
+        modifier = Modifier.padding(5.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
         SignUpTitle()
         Spacer(modifier = Modifier.height(10.dp))
-        SignUpFields(id, password, nickname, address)
+        SignUpFields(id, password, nickname, phoneNumber)
         Spacer(modifier = Modifier.height(20.dp))
         SignUpButton(
             viewModel = viewModel,
-            id.value,
-            password.value,
-            nickname.value,
-            address.value,
-            signUpSuccess,
-            context
+            requestDto = requestDto,
+            signUpState = signUpState,
+            onSignUpSuccess = {},
         )
+        if (!signUpState.isSuccess) {
+            Text(
+                text = signUpState.message,
+                modifier = Modifier.padding(top = 16.dp)
+            )
+        }
     }
 }
 
@@ -76,21 +100,21 @@ fun SignUpFields(
     id: MutableState<String>,
     password: MutableState<String>,
     nickname: MutableState<String>,
-    address: MutableState<String>
+    phoneNumber: MutableState<String>
 ) {
     Column(
         modifier = Modifier.padding(horizontal = 10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        SignUpField("ID", id)
-        SignUpField("비밀번호", password)
-        SignUpField("닉네임", nickname)
-        SignUpField("주소", address)
+        SignUpField(label = "ID", value = id)
+        SignUpField(label = "비밀번호", value = password, isPassword = true)
+        SignUpField(label = "닉네임", value = nickname)
+        SignUpField(label = "전화번호", value = phoneNumber)
     }
 }
 
 @Composable
-fun SignUpField(label: String, value: MutableState<String>) {
+fun SignUpField(label: String, value: MutableState<String>, isPassword: Boolean = false) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -104,7 +128,8 @@ fun SignUpField(label: String, value: MutableState<String>) {
             value = value.value,
             onValueChange = { value.value = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("입력하세요") }
+            label = { Text("입력하세요") },
+            visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None
         )
     }
 }
@@ -112,28 +137,18 @@ fun SignUpField(label: String, value: MutableState<String>) {
 @Composable
 fun SignUpButton(
     viewModel: SignUpViewModel,
-    id: String,
-    password: String,
-    nickname: String,
-    address: String,
-    signUpSuccess: Boolean,
-    context: Context
+    requestDto: SignUpRequestDto,
+    signUpState: SignUpState,
+    onSignUpSuccess: () -> Unit
 ) {
     Button(
         onClick = {
-            viewModel.signUp(id, password, nickname, address)
-            if (signUpSuccess) {
-                Toast.makeText(context, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show()
-                moveToLoginActivity(
-                    context = context,
-                    id = id,
-                    password = password,
-                    nickname = nickname,
-                    address = address
-                )
-            } else {
-                Toast.makeText(context, "회원가입이 불가능합니다", Toast.LENGTH_SHORT).show()
-            }
+            viewModel.signUp(
+                requestDto.authenticationId,
+                requestDto.password,
+                requestDto.nickname,
+                requestDto.phoneNumber
+            )
         },
         modifier = Modifier
             .padding(vertical = 10.dp)
@@ -141,22 +156,21 @@ fun SignUpButton(
         colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
         shape = RoundedCornerShape(8.dp)
     ) {
-        Text("회원가입", color = Color.White)
+        if (signUpState.isSuccess) {
+            Text("회원가입 성공!", color = Color.White)
+        } else {
+            Text("회원가입", color = Color.White)
+        }
+    }
+
+    LaunchedEffect(signUpState.isSuccess) {
+        if (signUpState.isSuccess) {
+            onSignUpSuccess()
+        }
     }
 }
 
-fun moveToLoginActivity(
-    context: Context,
-    id: String,
-    password: String,
-    nickname: String,
-    address: String
-) {
-    val intent = Intent(context, LoginActivity::class.java).apply {
-        putExtra("ID", id)
-        putExtra("PASSWORD", password)
-        putExtra("NICKNAME", nickname)
-        putExtra("ADDRESS", address)
-    }
+fun moveToLogin(context: Context) {
+    val intent = Intent(context, LoginActivity::class.java)
     context.startActivity(intent)
 }
