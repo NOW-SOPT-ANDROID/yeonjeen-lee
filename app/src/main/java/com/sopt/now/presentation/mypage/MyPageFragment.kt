@@ -14,7 +14,6 @@ class MyPageFragment : Fragment() {
             "바인딩 객체 좀 생성해주세요"
         }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,7 +29,7 @@ class MyPageFragment : Fragment() {
         val id = arguments?.getString("id") ?: ""
         val password = arguments?.getString("password") ?: ""
         val nickname = arguments?.getString("nickname") ?: ""
-        val phoneNumber = arguments?.getString("phonenumber") ?: ""
+        val phoneNumber = arguments?.getString("phoneNumber") ?: ""
 
         setMainProfile(id, password, nickname, phoneNumber)
 
