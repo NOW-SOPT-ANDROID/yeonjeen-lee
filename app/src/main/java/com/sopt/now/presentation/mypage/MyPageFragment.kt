@@ -11,7 +11,7 @@ class MyPageFragment : Fragment() {
     private var _binding: FragmentMypageBinding? = null
     private val binding
         get() = requireNotNull(_binding) {
-            "바인딩 객체 좀 생성해주세요"
+            "바인딩 객체 좀 생성해주세요."
         }
 
     override fun onCreateView(
