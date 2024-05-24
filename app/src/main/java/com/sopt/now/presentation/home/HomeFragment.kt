@@ -1,4 +1,4 @@
-package com.sopt.now.Fragment
+package com.sopt.now.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.sopt.now.ViewModel.HomeViewModel
-import com.sopt.now.adapter.FriendAdapter
 import com.sopt.now.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

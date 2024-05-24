@@ -1,4 +1,4 @@
-package com.sopt.now.Fragment
+package com.sopt.now.presentation.mypage
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,7 +36,12 @@ class MyPageFragment : Fragment() {
 
     }
 
-    private fun setMainProfile(id: String, password: String, nickname: String, phoneNumber: String) {
+    private fun setMainProfile(
+        id: String,
+        password: String,
+        nickname: String,
+        phoneNumber: String
+    ) {
         with(binding) {
             tvMyId.text = id
             tvMyPassword.text = password

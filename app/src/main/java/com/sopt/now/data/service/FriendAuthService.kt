@@ -1,5 +1,6 @@
-package com.sopt.now.data
+package com.sopt.now.data.service
 
+import com.sopt.now.data.model.response.FriendResponseDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

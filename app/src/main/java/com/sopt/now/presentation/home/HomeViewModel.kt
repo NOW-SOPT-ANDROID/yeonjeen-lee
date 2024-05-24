@@ -1,11 +1,11 @@
-package com.sopt.now.ViewModel
+package com.sopt.now.presentation.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sopt.now.data.FriendInfoData
-import com.sopt.now.data.FriendResponseDto
+import com.sopt.now.data.model.response.FriendResponseDto
 import com.sopt.now.data.ServicePool
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,7 +17,7 @@ class HomeViewModel : ViewModel() {
 
     fun getUsers() {
         ServicePool.reqresService.getUsers(page = 2).enqueue(
-            object : Callback< FriendResponseDto> {
+            object : Callback<FriendResponseDto> {
                 override fun onResponse(
                     call: Call<FriendResponseDto>,
                     response: Response<FriendResponseDto>

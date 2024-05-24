@@ -1,12 +1,13 @@
-package com.sopt.now.Activity
+package com.sopt.now.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.sopt.now.ViewModel.LoginViewModel
 import com.sopt.now.databinding.ActivityLoginBinding
+import com.sopt.now.presentation.MainActivity
+import com.sopt.now.presentation.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding

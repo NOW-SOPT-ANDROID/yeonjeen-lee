@@ -1,12 +1,11 @@
-package com.sopt.now.ViewModel
+package com.sopt.now.presentation.signup
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sopt.now.Activity.SignUpState
 import com.sopt.now.data.ServicePool
-import com.sopt.now.data.SignUpRequestDto
-import com.sopt.now.data.SignUpResponseDto
+import com.sopt.now.data.model.request.SignUpRequestDto
+import com.sopt.now.data.model.response.SignUpResponseDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +25,7 @@ class SignUpViewModel : ViewModel() {
                     val userId = response.headers()["location"]
                     liveData.value = SignUpState(
                         isSuccess = true,
-                        message = "회원가입 성공 유저의 ID는 $userId 입니둥"
+                        message = "회원가입 성공 유저의 ID는 $userId 입니다"
                     )
                     Log.d("SignUp", "data: $data, userId: $userId")
                 } else {

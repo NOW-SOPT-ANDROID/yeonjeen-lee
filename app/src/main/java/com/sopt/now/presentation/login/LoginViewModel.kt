@@ -1,4 +1,4 @@
-package com.sopt.now.ViewModel
+package com.sopt.now.presentation.login
 
 import androidx.lifecycle.ViewModel
 

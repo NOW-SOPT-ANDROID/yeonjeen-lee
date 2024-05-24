@@ -1,4 +1,4 @@
-package com.sopt.now.adapter
+package com.sopt.now.presentation.home
 
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.now.data.FriendInfoData

@@ -1,13 +1,13 @@
-package com.sopt.now.Activity
+package com.sopt.now.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.sopt.now.Fragment.HomeFragment
-import com.sopt.now.Fragment.MyPageFragment
-import com.sopt.now.Fragment.SearchFragment
 import com.sopt.now.R
 import com.sopt.now.databinding.ActivityMainBinding
+import com.sopt.now.presentation.home.HomeFragment
+import com.sopt.now.presentation.mypage.MyPageFragment
+import com.sopt.now.presentation.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

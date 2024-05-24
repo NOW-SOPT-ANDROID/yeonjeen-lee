@@ -1,5 +1,7 @@
-package com.sopt.now.data
+package com.sopt.now.data.model.request
 
+import com.sopt.now.data.model.response.FriendResponseDto
+import com.sopt.now.data.model.response.SupportResponseDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
