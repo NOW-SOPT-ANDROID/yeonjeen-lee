@@ -1,3 +1,53 @@
 <resources>
     <string name="app_name">NOW SOPT Android</string>
+
+    <!-- activity_login.xml-->
+    <string name="login_welcome_title">Welcome to SOPT</string>
+    <string name="login_id_title">ID</string>
+    <string name="login_id_edit">아이디를 입력하세요.</string>
+    <string name="login_password_title">비밀번호</string>
+    <string name="login_password_edit">비밀번호를 입력하세요.</string>
+    <string name="login_login_do">로그인하기</string>
+    <string name="login_sign_up_do">회원가입하기</string>
+
+    <!--activity_sign_up.xml-->
+    <string name="sign_up_title">SIGN UP</string>
+    <string name="sign_up_id_title">ID</string>
+    <string name="sign_up_id_edit">아이디를 입력하세요.</string>
+    <string name="sign_up_password_title">비밀번호</string>
+    <string name="sign_up_login_password_edit">비밀번호를 입력하세요.</string>
+    <string name="sign_up_phone_title">전화번호</string>
+    <string name="sign_up_phone_edit">전화번호를 입력하세요</string>
+    <string name="sign_up_nickname_title">닉네임</string>
+    <string name="sign_up_nickname_edit">닉네임을 입력하세요</string>
+    <string name="sign_up_signup_do">회원가입하기</string>
+
+    <!--fragment_mypage.xml-->
+    <string name="my_page_name">이연진</string>
+    <string name="my_page_description">잠은 죽어서 자자</string>
+    <string name="my_page_mbti_title">MBTI</string>
+    <string name="my_page_id_title">ID</string>
+    <string name="my_page_password_title">비밀번호</string>
+    <string name="my_page_nickname_title">닉네임</string>
+    <string name="my_page_phone_title">전화번호</string>
+
+    <!--item_birthday_friend.xml-->
+    <string name="birthday_friend_give_gift">선물하기</string>
+
+    <!--SignUp.kt-->
+    <string name="signup_success_message">회원가입 성공 유저의 ID는 %1$s 입니다</string>
+    <string name="signup_error_http_code">HTTP Error Code: %1$d</string>
+    <string name="signup_failure_message">로그인이 실패 %1$s</string>
+    <string name="signup_error_body">Error Body: %1$s</string>
+    <string name="server_error">서버에러</string>
+
+    <!--Login.kt-->
+    <string name="login_success_message">로그인에 성공했습니다.</string>
+    <string name="login_failure_message">로그인에 실패했습니다.</string>
+
+    <!--menu.xml-->
+    <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_my_page">My</string>
+
 </resources>
