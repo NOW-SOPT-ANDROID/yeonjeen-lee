@@ -1,22 +1,27 @@
 package com.sopt.now.presentation.signup
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.sopt.now.data.ServicePool
 import com.sopt.now.data.model.request.SignUpRequestDto
 import com.sopt.now.databinding.ActivitySignupBinding
 import com.sopt.now.presentation.login.LoginActivity
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
-    private val viewModel by viewModels<SignUpViewModel>()
+    private lateinit var viewModel: SignUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val authService = ServicePool.authService
+        val factory = SignUpViewModelFactory(authService)
+        viewModel = ViewModelProvider(this, factory).get(SignUpViewModel::class.java)
 
         initViews()
         initObserver()
@@ -29,7 +34,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
-        viewModel.liveData.observe(this) { state ->
+        viewModel.signUpStateLiveData.observe(this) { state ->
             Toast.makeText(
                 this@SignUpActivity,
                 state.message,
@@ -37,12 +42,11 @@ class SignUpActivity : AppCompatActivity() {
             ).show()
 
             if (state.isSuccess) {
-                // 회원가입 성공 시에 로그인 페이지로 이동
                 moveToLogin(
-                    binding.etSignUpID.text.toString(), // 아이디
-                    binding.etSignUpPassword.text.toString(), // 비밀번호
-                    binding.etSignUpNickName.text.toString(), // 닉네임
-                    binding.etSignUpPhone.text.toString() // 전화번호
+                    binding.etSignUpID.text.toString(),
+                    binding.etSignUpPassword.text.toString(),
+                    binding.etSignUpNickName.text.toString(),
+                    binding.etSignUpPhone.text.toString()
                 )
             }
         }
@@ -62,14 +66,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun moveToLogin(id: String, password: String, nickname: String, phoneNumber: String) {
-        val intent = Intent(this@SignUpActivity, LoginActivity::class.java).apply {
-            putExtra("id", id)
-            putExtra("password", password)
-            putExtra("nickname", nickname)
-            putExtra("phoneNumber", phoneNumber)
-        }
+        val intent = LoginActivity.createIntent(this, id, password, nickname, phoneNumber)
         startActivity(intent)
-        finish() // 현재 SignUpActivity 종료
+        finish()
     }
 }
 
