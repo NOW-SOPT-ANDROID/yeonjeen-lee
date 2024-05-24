@@ -1,5 +1,6 @@
 package com.sopt.now.presentation.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -21,8 +22,8 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        val savedId = intent.getStringExtra("id")
-        val savedPassword = intent.getStringExtra("password")
+        val savedId = intent.getStringExtra(EXTRA_ID) ?: ""
+        val savedPassword = intent.getStringExtra(EXTRA_PASSWORD) ?: ""
 
         moveToSignUp()
         initializeLoginButton(savedId, savedPassword)
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializeLoginButton(savedId: String?, savedPassword: String?) {
+    private fun initializeLoginButton(savedId: String, savedPassword: String) {
         binding.btnLogin.setOnClickListener {
             val inputId = binding.etLoginID.text.toString()
             val inputPassword = binding.etLoginPassword.text.toString()
@@ -44,12 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateAndPerformLogin(
-        inputId: String,
-        inputPassword: String,
-        savedId: String?,
-        savedPassword: String?
-    ) {
+    private fun validateAndPerformLogin(inputId: String, inputPassword: String, savedId: String, savedPassword: String) {
         if (viewModel.checkLoginCredentials(inputId, inputPassword, savedId, savedPassword)) {
             Toast.makeText(this, getString(R.string.login_success_message), Toast.LENGTH_SHORT).show()
             moveToMainActivity(savedId, savedPassword)
@@ -58,21 +54,37 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun moveToMainActivity(savedId: String?, savedPassword: String?) {
+    private fun moveToMainActivity(savedId: String, savedPassword: String) {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtras(createBundleForUserInfo(savedId, savedPassword))
         startActivity(intent)
         finish()
     }
 
-    private fun createBundleForUserInfo(savedId: String?, savedPassword: String?): Bundle {
+    private fun createBundleForUserInfo(savedId: String, savedPassword: String): Bundle {
         val userInfoBundle = Bundle()
         with(userInfoBundle) {
-            putString("id", savedId)
-            putString("password", savedPassword)
-            putString("nickname", intent.getStringExtra("nickname"))
-            putString("phonenumber", intent.getStringExtra("phonenumber"))
+            putString(EXTRA_ID, savedId)
+            putString(EXTRA_PASSWORD, savedPassword)
+            putString(EXTRA_NICKNAME, intent.getStringExtra(EXTRA_NICKNAME))
+            putString(EXTRA_PHONE_NUMBER, intent.getStringExtra(EXTRA_PHONE_NUMBER))
         }
         return userInfoBundle
+    }
+
+    companion object {
+        private const val EXTRA_ID = "id"
+        private const val EXTRA_PASSWORD = "password"
+        private const val EXTRA_NICKNAME = "nickname"
+        private const val EXTRA_PHONE_NUMBER = "phoneNumber"
+
+        fun createIntent(context: Context, id: String, password: String, nickname: String, phoneNumber: String): Intent {
+            return Intent(context, LoginActivity::class.java).apply {
+                putExtra(EXTRA_ID, id)
+                putExtra(EXTRA_PASSWORD, password)
+                putExtra(EXTRA_NICKNAME, nickname)
+                putExtra(EXTRA_PHONE_NUMBER, phoneNumber)
+            }
+        }
     }
 }
