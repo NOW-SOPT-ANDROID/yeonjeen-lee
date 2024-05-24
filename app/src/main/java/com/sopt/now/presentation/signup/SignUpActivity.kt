@@ -2,7 +2,6 @@ package com.sopt.now.presentation.signup
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.sopt.now.data.ServicePool
@@ -29,7 +28,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun initViews() {
         binding.btnSignUp.setOnClickListener {
-            viewModel.signUp(getSignUpRequestDto())
+            viewModel.signUp(getSignUpRequestDto(),this)
         }
     }
 
